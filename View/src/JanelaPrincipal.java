@@ -8,6 +8,8 @@ import javax.swing.*;
 
 public class JanelaPrincipal implements ActionListener {
 
+    Carrinho c1 = Carrinho.getInstance();
+
     JFrame janela = new JFrame();
     JPanel painel = new JPanel();
     JLabel produto = new JLabel("Selecione o produto desejado: ");
@@ -35,19 +37,27 @@ public class JanelaPrincipal implements ActionListener {
 
         //definimos a largura e a altura da janela
         janela.setSize(400, 400);
-        botao.setBackground(Color.orange);
+       // botao.setBackground(Color.orange);
         botao.setEnabled(true);
         btnCarrinho.setEnabled(true);
         botao.addActionListener(this);
         btnCarrinho.addActionListener(this);
         //define a posição da janela na tela
-        janela.setLocation(0, 0);
+        janela.setLocation(400, 200);
         //define que ao fechar a janela, encerre a aplicação
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         painel.setLayout(new GridLayout(4, 2, 5, 1));
         painel.add(produto);
-        listModel.addElement("arroz : $5.00");
-        listModel.addElement("feijao : $10.00");
+
+        Produto feijao = new Produto("01", "feijao", 5.0);
+        Produto arroz = new Produto("02", "arroz", 3.0);
+        Produto lentilha = new Produto("03", "lentilha", 4.0);
+
+
+        listModel.addElement(feijao);
+        listModel.addElement(arroz);
+        listModel.addElement(lentilha);
+
         produto.setHorizontalAlignment(0);
         painel.add(lista);
         painel.add(botao);
@@ -62,10 +72,18 @@ public class JanelaPrincipal implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botao) {
             JOptionPane.showMessageDialog(null, "produto adicionado com sucesso");
+            //System.out.println(lista.getSelectedValue());
+
+            Produto teste = (Produto) listModel.getElementAt(lista.getSelectedIndex());
+
+            c1.setProduto(teste);
+
+            System.out.println(c1);
+
         }
         if (e.getSource() == btnCarrinho) {
-            JOptionPane.showMessageDialog(null, "mostra os produtos do carrinho");
-        }
+            JOptionPane.showMessageDialog(null, c1);
+    }
 
     }
 }

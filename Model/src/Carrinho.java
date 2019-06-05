@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Carrinho {
 
-    private Produto[] produto;
+    private ArrayList<Produto> produto = new ArrayList<>();
 
 
    private static Carrinho instancia;
@@ -16,20 +16,17 @@ public class Carrinho {
        return instancia;
    }
 
-
+    //construtor
     private Carrinho() {
 
     }
 
-
-
-
-    public Produto[] getProduto() {
+    public ArrayList<Produto> getProduto() {
         return produto;
     }
 
-    public void setProduto(Produto[] produto) {
-        this.produto = produto;
+    public void setProduto(Produto produto) {
+        this.produto.add(produto);
     }
 
     public static Carrinho getInstancia() {
@@ -38,5 +35,12 @@ public class Carrinho {
 
     public static void setInstancia(Carrinho instancia) {
         Carrinho.instancia = instancia;
+    }
+
+    @Override
+    public String toString() {
+        return "Carrinho{" +
+                "produto=" + produto +
+                '}';
     }
 }

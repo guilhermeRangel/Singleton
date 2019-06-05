@@ -6,7 +6,9 @@ public class controller {
 
        ListaDeProdutos pList = new ListaDeProdutos();
 
-        Carrinho c1 = Carrinho.getInstance();
+       
+
+
 
         Produto p = null;
         Produto p2 = null;
